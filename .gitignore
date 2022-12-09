@@ -2,3 +2,5 @@ Simple_Map/static/js/config.js
 .DS_Store
 mapping_multiple_points/static/js/config.js
 mapping_single_points/static/js/config.js
+mapping_GEOJSON_Points/static/js/config.js
+*/config.js
