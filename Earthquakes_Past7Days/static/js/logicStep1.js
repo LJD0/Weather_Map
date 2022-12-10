@@ -32,7 +32,6 @@ let earthquakeData = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/
 
 // Grabbing our GeoJSON data.
 d3.json(earthquakeData).then(function(data) {
-    console.log(data);
     let mapMakerData = data.features
     createFeatures(mapMakerData)
 });
@@ -43,11 +42,14 @@ function createFeatures(feat) {
         layer.bindPopup("<h3>Location: " + feature.properties.place +"</h3>")
     }
 
-
-
 // Creating a GeoJSON layer with the retrieved data.
-    L.geoJSON(feat, {
+    earthquakes = L.geoJSON(feat, {
         onEachFeature : onEachFeature,
-    }).addTo(map);
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng,{
+                radius:feature.properties.mag*2,
+                color :'green'
+            });
+            }}).addTo(map);
 
 }
